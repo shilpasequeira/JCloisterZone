@@ -1,6 +1,5 @@
 package com.jcloisterzone.game.capability;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,7 @@ import com.jcloisterzone.LittleBuilding;
 import com.jcloisterzone.Player;
 import com.jcloisterzone.action.LittleBuildingAction;
 import com.jcloisterzone.action.PlayerAction;
+import com.jcloisterzone.board.Position;
 import com.jcloisterzone.board.pointer.FeaturePointer;
 import com.jcloisterzone.event.LittleBuildingEvent;
 import com.jcloisterzone.game.Capability;
@@ -22,7 +22,8 @@ import com.jcloisterzone.game.Game;
 public class LittleBuildingsCapability extends Capability {
 
     @SuppressWarnings("unchecked")
-    private Map<Player, Integer>[] buildings = new Map[LittleBuilding.values().length];
+    private final Map<Player, Integer>[] buildings = new Map[LittleBuilding.values().length];
+    private final Map<Position, LittleBuilding> placedBuildings = new HashMap<Position, LittleBuilding>();
 
     public LittleBuildingsCapability(Game game) {
         super(game);
@@ -72,7 +73,9 @@ public class LittleBuildingsCapability extends Capability {
             throw new IllegalStateException("Player hasn't " + lbType.name() + " building.");
         }
         setBuildingsCount(player, lbType, buildingCount - 1);
-        game.post(new LittleBuildingEvent(player, lbType));
+        Position pos = getCurrentTile().getPosition();
+        placedBuildings.put(pos, lbType);
+        game.post(new LittleBuildingEvent(player, lbType, pos));
     }
 
     @Override
