@@ -78,6 +78,10 @@ public class LittleBuildingsCapability extends Capability {
         game.post(new LittleBuildingEvent(player, lbType, pos));
     }
 
+    public LittleBuilding getPlacedLittleBuilding(Position pos) {
+    	return placedBuildings.get(pos);
+    }
+
     @Override
     public void prepareActions(List<PlayerAction<?>> actions, Set<FeaturePointer> followerOptions) {
         Player player = game.getActivePlayer();
