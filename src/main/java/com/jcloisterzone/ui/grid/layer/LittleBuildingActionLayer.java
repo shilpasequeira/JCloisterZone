@@ -76,9 +76,10 @@ public class LittleBuildingActionLayer extends AbstractTileLayer implements Acti
         y -= icoSize / 2;
 
         for (LittleBuilding lb : LittleBuilding.values()) {
-        	if (!action.getOptions().contains(lb)) continue;
-        	Rectangle r = new Rectangle(x-padding, y-padding, icoSize+2*padding, icoSize+2*padding);
-        	areas.put(lb, r);
+        	if (action.getOptions().contains(lb)) {
+        		Rectangle r = new Rectangle(x-padding, y-padding, icoSize+2*padding, icoSize+2*padding);
+        		areas.put(lb, r);
+        	}
         	x += icoSize;
             x += 3*padding;
         }
