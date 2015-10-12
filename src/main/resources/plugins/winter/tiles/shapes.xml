@@ -20,7 +20,7 @@
         <apply>BA.CFC.2 N</apply>
     </shape>
     <shape feature="CITY">
-        <svg:polygon points="-5,-34 994,-34 994,13 940,113 875,201 860,211 847,228 812,236 802,231 705,263 650,268 520,258 412,241 392,226 387,233 280,263 267,241 265,256 235,261 215,253 215,246 130,188 110,191 67,168 65,103 -5,18"/>
+        <svg:polygon points="0,0 994,0 994,13 940,113 875,201 860,211 847,228 812,236 802,231 705,263 650,268 520,258 412,241 392,226 387,233 280,263 267,241 265,256 235,261 215,253 215,246 130,188 110,191 67,168 65,103 0,18"/>
         <apply>WI.CRr N</apply>
     </shape>
     <shape feature="CITY">
@@ -74,7 +74,7 @@
     <shape feature="CITY">
         <svg:polygon points="20,0 999,0 999,27 927,147 905,160 877,205 842,225 817,215 777,240 727,247 720,250 670,255 667,250 642,252 610,242 597,250 530,252 525,240 430,265 385,277 335,280 307,272 300,235 225,185 205,190 177,175 175,155 122,117"/>
         <apply>BA.RCr N</apply>
-        <apply>WI.RrC.i N</apply>
+        <apply>WI.RrC N</apply>
     </shape>
     <shape feature="CITY">
         <svg:polygon points="15,0 980,0 930,42 887,77 792,130 750,142 747,170 737,187 712,190 690,180 682,192 622,215 595,217 597,220 547,225 535,220 392,205 375,192 365,202 317,202 285,187 285,180 202,150 142,115"/>
@@ -162,7 +162,7 @@
     </shape>
     <shape feature="ROAD">
         <svg:polygon points="0,590 0,390 90,390 165,412 245,442 377,515 427,567 437,617 445,685 447,762 455,797 485,822 525,845 575,897 595,945 600,999 400,999 385,985 315,945 287,920 257,855 257,792 252,722 240,702 227,687 115,617 87,605"/>
-        <apply>WI.RrC.i SW</apply>
+        <apply>WI.RrC SW</apply>
     </shape>
     <shape feature="ROAD">
         <svg:polygon points="0,600 0,400 67,397 162,412 240,417 272,417 292,402 305,382 297,270 285,225 302,180 322,125 365,57 395,22 400,0 610,0 600,40 587,85 567,137 522,190 512,212 510,232 527,337 527,397 512,460 487,517 445,560 390,602 332,625 240,635 65,605 40,602"/>
@@ -213,12 +213,12 @@
         <apply>WI.LRFR ER.SL.SR.WL</apply>
     </shape>
     <shape feature="FARM">
-        <svg:polygon points="510,999 615,805 530,722 525,642 800,507 999,510 995,999"/>
+        <svg:polygon points="510,999 615,805 530,722 525,642 800,507 999,510 999,999"/>
         <apply>WI.CRr ER.SL</apply>
     </shape>
     <shape feature="FARM">
         <svg:polygon points="0,999 0,467 315,645 490,999"/>
-        <apply>WI.RrC.i SR.WL</apply>
+        <apply>WI.RrC SR.WL</apply>
     </shape>
     <shape feature="FARM">
         <svg:polygon points="510,999 607,635 999,502 999,999"/>
@@ -243,7 +243,7 @@
         <apply>WI.RC EL.ER.SL.SR.WL</apply>
         <apply>WI.CR ER.SL.SR.WL.WR</apply>
         <apply>WI.CRr SR.WL.WR.EL</apply>
-        <apply>WI.RrC.i EL.ER.SL.WR</apply>
+        <apply>WI.RrC EL.ER.SL.WR</apply>
         <apply>WI.RrRr NR.EL.SR.WL</apply>
     </complement-farm>
 
