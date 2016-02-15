@@ -221,7 +221,7 @@ public class GameController extends EventProxyUiController<Game> implements Invo
     public void handleRequestConfirm(RequestConfirmEvent ev) {
         if (ev.getTargetPlayer().isLocalHuman()) {
             if (game.isUndoAllowed()) { //should be true during game, but immediately after load it can be false
-            	client.getJMenuBar().setItemEnabled(MenuItem.UNDO, true);
+                client.getJMenuBar().setItemEnabled(MenuItem.UNDO, true);
             }
         }
     }
@@ -327,6 +327,34 @@ public class GameController extends EventProxyUiController<Game> implements Invo
             gameView.getGridPanel().setBazaarPanel(null);
         }
     }
+
+    public void resign() {
+      Player player = game.getActivePlayer();
+      if (!player.isLocalHuman()) {
+          player = null;
+          for (Player p : game.getRemainingPlayers()) {
+              if (p.isLocalHuman()) {
+                  if (player != null) {
+                      showWarning(_("Resign"), _("Hot seat game. To resign make resing in your turn."));
+                      return;
+                  }
+                  player = p;
+              }
+          }
+          if (player == null) {
+              logger.warn("No local player to resign");
+              return;
+          }
+      }
+      int result = JOptionPane.showConfirmDialog(client,
+          player.getNick() + ", " + _("do you want to surrender ?"), _("Resign"),
+          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+      if (result != JOptionPane.YES_OPTION) {
+          return;
+      }
+      //TODO send new message
+    }
+
 
     public void leaveGame() {
         if (getChannel() == null) {

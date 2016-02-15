@@ -28,6 +28,7 @@ public class MenuBar extends JMenuBar {
         CONNECT_P2P(_("Connect"), KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())),
         PLAY_ONLINE(_("Play Online"), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())),
         DISCONNECT(_("Disconnect")),
+        RESIGN(_("Resign")),
         LEAVE_GAME(_("Leave Game")),
         SAVE(_("Save Game"), KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())),
         LOAD(_("Load Game"), KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())),
@@ -107,6 +108,7 @@ public class MenuBar extends JMenuBar {
         }));
         menu.add(createMenuItem(MenuItem.DISCONNECT, false));
         menu.addSeparator();
+        menu.add(createMenuItem(MenuItem.RESIGN, false));
         menu.add(createMenuItem(MenuItem.LEAVE_GAME, false));
         menu.addSeparator();
 

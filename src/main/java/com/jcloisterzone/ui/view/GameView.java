@@ -188,6 +188,12 @@ public class GameView extends AbstractUiView implements WindowStateListener {
                 new BugReportDialog(gc.getReportingTool());
             }
         });
+        menu.setItemActionListener(MenuItem.RESIGN, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gc.resign();
+            }
+        });
         menu.setItemActionListener(MenuItem.LEAVE_GAME, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -203,6 +209,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
         menu.setItemEnabled(MenuItem.GAME_SETUP, true);
         menu.setItemEnabled(MenuItem.TAKE_SCREENSHOT, true);
         menu.setItemEnabled(MenuItem.LEAVE_GAME, true);
+        menu.setItemEnabled(MenuItem.RESIGN, true);
         menu.setItemEnabled(MenuItem.ZOOM_IN, true);
         menu.setItemEnabled(MenuItem.ZOOM_OUT, true);
         menu.setItemEnabled(MenuItem.ROTATE_BOARD, true);
@@ -236,6 +243,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
         menu.setItemEnabled(MenuItem.ZOOM_IN, false);
         menu.setItemEnabled(MenuItem.ZOOM_OUT, false);
         menu.setItemEnabled(MenuItem.ROTATE_BOARD, false);
+        menu.setItemEnabled(MenuItem.RESIGN, false);
         menu.setItemEnabled(MenuItem.LEAVE_GAME, false);
         menu.setItemEnabled(MenuItem.TAKE_SCREENSHOT, false);
         menu.setItemEnabled(MenuItem.DISCARDED_TILES, false);
@@ -260,6 +268,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
         menu.setItemEnabled(MenuItem.DISCARDED_TILES, false);
         menu.setItemEnabled(MenuItem.UNDO, false);
         menu.setItemEnabled(MenuItem.REPORT_BUG, false);
+        menu.setItemEnabled(MenuItem.RESIGN, false);
 
         if (gc.getChannel() == null) {
             menu.setItemEnabled(MenuItem.NEW_GAME, true);
@@ -479,25 +488,6 @@ public class GameView extends AbstractUiView implements WindowStateListener {
             JOptionPane.showMessageDialog(client, ex.getLocalizedMessage(), _("Error"), JOptionPane.ERROR_MESSAGE);
         }
     }
-
-//    public void resign() {
-//        Player player = game.getActivePlayer();
-//        if (player.isLocalHuman()) {
-//            if(game.getActivePlayersCount() == 1) {
-//                gc.showWarning("Action blocked", "You can't resign, if you want to finish game, close it");
-//                return;
-//            }
-//            String[] options = new String[] {_("Resign"), _("Cancel and continue playing") };
-//            int result = JOptionPane.showOptionDialog(client,
-//                _("You won't be able to continue playing."),
-//                _("Are yu sure?"),
-//                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-//            if (result == -1 || result == 1) { //closed dialog
-//                return;
-//            }
-//            player.resign();
-//        }
-//    }
 
     class KeyRepeater extends TimerTask {
 
