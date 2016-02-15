@@ -243,17 +243,14 @@ public class Game extends GameSettings implements EventProxy {
         return phase == null ? null : phase.getActivePlayer();
     }
 
-    public int getActivePlayersCount() {
-    	Player actual = getNextPlayer(turnPlayer);
-    	int result = turnPlayer.hasResigned() ? 0 : 1;
-
-    	while(turnPlayer != actual) {
-    		if (!actual.hasResigned()) {
-    			result++;
-    		}
-    		actual = getNextPlayer(actual);
-    	}
-    	return result;
+    public List<Player> getRemainingPlayers() {
+        List<Player> result = new ArrayList<>(plist.length);
+        for (Player p : plist) {
+            if (!p.isResigned()) {
+                result.add(p);
+            }
+        }
+        return result;
     }
 
     public List<NeutralFigure> getNeutralFigures() {
@@ -269,25 +266,25 @@ public class Game extends GameSettings implements EventProxy {
     }
 
     public Player getNextPlayer(Player p) {
-        int playerIndex = p.getIndex();
-        int nextPlayerIndex = playerIndex == (plist.length - 1) ? 0 : playerIndex + 1;
-        Player player = getPlayer(nextPlayerIndex);
-        if(player.hasResigned()) {
-        	return getNextPlayer(player);
-        } else {
-        	return player;
-        }
+        int startingIdx = p.getIndex();
+        int idx = startingIdx;
+        do {
+            idx++;
+            if (idx == plist.length) idx = 0;
+            if (!plist[idx].isResigned()) return plist[idx];
+        } while (idx != startingIdx);
+        return null;
     }
 
     public Player getPrevPlayer(Player p) {
-        int playerIndex = p.getIndex();
-        int prevPlayerIndex = playerIndex == 0 ? plist.length - 1 : playerIndex - 1;
-        Player player = getPlayer(prevPlayerIndex);
-        if(player.hasResigned()) {
-        	return getPrevPlayer(player);
-        } else {
-        	return player;
-        }
+        int startingIdx = p.getIndex();
+        int idx = startingIdx;
+        do {
+            idx--;
+            if (idx == 0) idx = plist.length - 1;
+            if (!plist[idx].isResigned()) return plist[idx];
+        } while (idx != startingIdx);
+        return null;
     }
 
 

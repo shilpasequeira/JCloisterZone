@@ -164,12 +164,11 @@ public class Player implements Serializable {
         return getSlot().isOwn() && !getSlot().isAi();
     }
 
-    public void resign() {
-    	resigned = true;
+    public boolean isResigned() {
+        return resigned;
     }
 
-    public boolean hasResigned() {
-    	return resigned;
+    public void setResigned(boolean resigned) {
+        this.resigned = resigned;
     }
-
 }

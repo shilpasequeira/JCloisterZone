@@ -46,7 +46,7 @@ public class BazaarPhase extends ServerAwarePhase {
         }
         Player p = game.getNextPlayer();
         bazaarCap.setBazaarTileSelectingPlayer(p);
-        int size = game.getActivePlayersCount();
+        int size = game.getRemainingPlayers().size();
         ArrayList<BazaarItem> supply = new ArrayList<BazaarItem>(size);
         for (int i = 0; i < size; i++) {
             Tile t = getTilePack().drawTile(game.getRandom().nextInt(getTilePack().size()));

@@ -142,7 +142,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
             }
         });
         if (menu.isSelected(MenuItem.LAST_PLACEMENTS)) {
-        	mainPanel.toggleRecentHistory(true);
+            mainPanel.toggleRecentHistory(true);
         }
         menu.setItemActionListener(MenuItem.FARM_HINTS, new ActionListener() {
             @Override
@@ -152,7 +152,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
             }
         });
         if (menu.isSelected(MenuItem.FARM_HINTS)) {
-        	mainPanel.setShowFarmHints(true);
+            mainPanel.setShowFarmHints(true);
         }
         menu.setItemActionListener(MenuItem.PROJECTED_POINTS, new ActionListener() {
             @Override
@@ -162,7 +162,7 @@ public class GameView extends AbstractUiView implements WindowStateListener {
             }
         });
         if (menu.isSelected(MenuItem.PROJECTED_POINTS)) {
-        	getControlPanel().setShowProjectedPoints(true);
+            getControlPanel().setShowProjectedPoints(true);
         }
         menu.setItemActionListener(MenuItem.DISCARDED_TILES, new ActionListener() {
             @Override
@@ -272,18 +272,18 @@ public class GameView extends AbstractUiView implements WindowStateListener {
 
     @Override
     public void onWebsocketClose(int code, String reason, boolean remote) {
-    	String message = _("Connection lost") + ". " + _("Reconnecting...");
+        String message = _("Connection lost") + ". " + _("Reconnecting...");
         if (remote) {
-        	if (gc.getChannel() == null) {
-        		if (!game.isOver()) {
-        			//simple server sends game message automatically, send game id for online server only
-        			gc.getConnection().reconnect(null);
-        			getGridPanel().showErrorMessage(message);
-        		}
-        	} else {
-        		gc.getConnection().reconnect(game.isOver() ? null : game.getGameId());
-        		getGridPanel().showErrorMessage(message);
-        	}
+            if (gc.getChannel() == null) {
+                if (!game.isOver()) {
+                    //simple server sends game message automatically, send game id for online server only
+                    gc.getConnection().reconnect(null);
+                    getGridPanel().showErrorMessage(message);
+                }
+            } else {
+                gc.getConnection().reconnect(game.isOver() ? null : game.getGameId());
+                getGridPanel().showErrorMessage(message);
+            }
         }
     }
 
@@ -479,6 +479,25 @@ public class GameView extends AbstractUiView implements WindowStateListener {
             JOptionPane.showMessageDialog(client, ex.getLocalizedMessage(), _("Error"), JOptionPane.ERROR_MESSAGE);
         }
     }
+
+//    public void resign() {
+//        Player player = game.getActivePlayer();
+//        if (player.isLocalHuman()) {
+//            if(game.getActivePlayersCount() == 1) {
+//                gc.showWarning("Action blocked", "You can't resign, if you want to finish game, close it");
+//                return;
+//            }
+//            String[] options = new String[] {_("Resign"), _("Cancel and continue playing") };
+//            int result = JOptionPane.showOptionDialog(client,
+//                _("You won't be able to continue playing."),
+//                _("Are yu sure?"),
+//                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+//            if (result == -1 || result == 1) { //closed dialog
+//                return;
+//            }
+//            player.resign();
+//        }
+//    }
 
     class KeyRepeater extends TimerTask {
 
